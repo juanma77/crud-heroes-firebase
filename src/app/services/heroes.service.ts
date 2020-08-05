@@ -50,4 +50,57 @@ export class HeroesService {
 
 
   }
+
+  // Para obtener un listado de todos los heroes en la bd
+  public getHeroes() {
+
+    return this.httpClient.get( `${ this.url }/heroes.json` ).pipe(
+
+      map(resp =>
+
+        this.createHeroesArray( resp )
+
+
+      )
+
+    );
+
+
+  }
+
+  // Usamos este metodo para regresar lo que nos retorna, y usarlo en el map del metodo de arriba 
+  private createHeroesArray( heroesObj: Object ) {
+
+   const heroes: HeroeModel[] = [];
+
+   // Si no tenemos ninugn heroe en la bd 
+   if( heroesObj === null ) {
+
+    return []; 
+
+
+   }
+
+   // Para obtener la key del objeto (que seria el id del heroe) y asignarsela al heroe.id
+  Object.keys( heroesObj ).forEach( key =>{
+
+    const heroe: HeroeModel = heroesObj[key];
+
+    heroe.id = key;
+
+    heroes.push( heroe );
+
+  });
+
+  return heroes; 
+
+
+
+
+
+
+
+
+
+  }
 }
