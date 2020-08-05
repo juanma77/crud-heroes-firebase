@@ -102,4 +102,11 @@ export class HeroesService {
     return this.httpClient.get(` ${ this.url }/heroes/${ id }.json`);
 
   }
+
+  // Para eliminar un heroe
+  public deleteHeroe( id: string ) {
+
+    return this.httpClient.delete(` ${ this.url }/heroes/${ id }.json`);
+
+  }
 }
