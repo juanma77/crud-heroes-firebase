@@ -31,7 +31,24 @@
           <label *ngIf="!heroe.alive" class="badge badge-danger">Muerto</label>
 
         </td>
-        <td></td>
+        <td>
+          <!-- Usamos el [routerLink] porque debemos de utilizar el heroe.id a diferencia del routerLink de mas arriba donde no lo usamos -->
+          <button class="btn btn-info mr-1" [routerLink]="[ '/heroe', heroe.id ]">
+
+            <i class="fa fa-pencil"></i>
+
+
+          </button>
+
+          <button class="btn btn-danger">
+
+            <i class="fa fa-trash"></i>
+
+
+          </button>
+
+
+        </td>
       </tr>
     </tbody>
   </table>

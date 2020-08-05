@@ -94,13 +94,12 @@ export class HeroesService {
 
   return heroes; 
 
+  }
 
+  // Para obtener un unico heroe
+  public getHeroe( id: string ) {
 
-
-
-
-
-
+    return this.httpClient.get(` ${ this.url }/heroes/${ id }.json`);
 
   }
 }
