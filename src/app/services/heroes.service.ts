@@ -17,6 +17,7 @@ export class HeroesService {
 
   }
 
+  // Para crear un nuevo heroe en la base de datos 
   public createNewHeroe( heroe: HeroeModel ) {
 
     return this.httpClient.post( `${ this.url }/heroes.json`, heroe ).pipe(
@@ -30,6 +31,22 @@ export class HeroesService {
 
     );
 
+
+
+  }
+
+  // Para actualizar un heroe; la propiedad spread (...) sirve para no tener que escribir todas las propiedades de un objeto; así se crea una copia de cada una de las propiedades del objeto heroe en el nuevo objeto heroeTemp; tenemos que crear el tempHeroe para que al actualizar un heroe no se cree un campo con el id del mismo
+  public updateHeroe( heroe: HeroeModel ) {
+
+    const tempHeroe = {
+
+      ...heroe
+
+    }
+
+    delete tempHeroe.id; 
+
+    return this.httpClient.put( `${ this.url }/heroes/${ heroe.id }.json`, tempHeroe );
 
 
   }

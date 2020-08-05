@@ -29,13 +29,24 @@ export class HeroeComponent implements OnInit {
     // console.log( form );
     // console.log( this.heroe ); 
 
+    // Si ya existe el heroe entonces solo actualizamos su informacion; si no existe el heroe entonces creamos uno nuevo
+    if( this.heroe.id ) {
 
-    this.heroesService.createNewHeroe( this.heroe ).subscribe( resp =>{
+      this.heroesService.updateHeroe( this.heroe ).subscribe( resp =>{
 
-      console.log( resp );
+        console.log( resp );
+  
+      });
 
-    })
+    } else {
 
+      this.heroesService.createNewHeroe( this.heroe ).subscribe( resp =>{
+
+        console.log( resp );
+  
+      });
+
+    }
 
   }
 
