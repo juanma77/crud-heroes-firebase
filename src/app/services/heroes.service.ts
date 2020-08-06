@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HeroeModel } from '../models/heroe.model';
 
-import { map } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -51,14 +51,15 @@ export class HeroesService {
 
   }
 
-  // Para obtener un listado de todos los heroes en la bd
+  // Para obtener un listado de todos los heroes en la bd; el delay es para que el Observable tarde x cantidad de milisegundos en entregarnos la respuesta 
   public getHeroes() {
 
     return this.httpClient.get( `${ this.url }/heroes.json` ).pipe(
 
       map(resp =>
 
-        this.createHeroesArray( resp )
+        this.createHeroesArray( resp ),
+        delay( 0 )
 
 
       )

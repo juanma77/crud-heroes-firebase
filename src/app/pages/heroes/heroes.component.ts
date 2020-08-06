@@ -14,7 +14,11 @@ export class HeroesComponent implements OnInit {
 
   public heroes: HeroeModel[] = [];
 
+  public loading: boolean = false; 
+
   ngOnInit() {
+
+    this.loading = true;
 
     this.heroesService.getHeroes().subscribe( resp =>{
 
@@ -22,6 +26,8 @@ export class HeroesComponent implements OnInit {
       console.log( resp ); 
 
       this.heroes = resp;
+
+      this.loading = false; 
 
 
     });
